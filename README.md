@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Static Badge](https://img.shields.io/badge/Lang-TypeScript-blue?logo=kotlin)](https://www.typescriptlang.org/)
+[![Static Badge](https://img.shields.io/badge/Lang-TypeScript-blue?logo=typescript)](https://www.typescriptlang.org/)
 
 # easy-rscp-js
 
