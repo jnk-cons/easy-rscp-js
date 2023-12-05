@@ -1,0 +1,32 @@
+{
+  "name": "easy-rscp",
+  "version": "0.5.0",
+  "description": "e3dc rscp protocol implementation",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
+    "int-test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine-integration.json"
+  },
+  "keywords": [],
+  "author": "Jochen Zink",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jasmine": "^4.3.6",
+    "@types/rijndael-js": "^1.0.1",
+    "jasmine": "^5.1.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "crc-32": "^1.2.2",
+    "net": "^1.0.2",
+    "rijndael-js": "^2.0.0"
+  }
+}
