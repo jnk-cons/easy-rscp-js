@@ -131,7 +131,15 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
                 this.queue.push(handler)
                 this.processQueue()
             } else {
-                reject(new Error('not connected'))
+                this.connect()
+                    .then(() => {
+                        const handler = new FrameSender(frame, this.socket!!, this.aes, resolve, reject, this)
+                        this.queue.push(handler)
+                        this.processQueue()
+                    })
+                    .catch(e => {
+                        reject(e);
+                    })
             }
         })
     }
