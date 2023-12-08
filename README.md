@@ -1,5 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Static Badge](https://img.shields.io/badge/Lang-TypeScript-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Static Badge](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Static Badge](https://img.shields.io/badge/npm-CD3738?style=for-the-badge&logo=typescript&logoColor=white)](https://www.npmjs.com/package/easy-rscp)
 
 # easy-rscp-js
 
@@ -13,6 +14,12 @@ This library is a port of [easy-rscp](https://github.com/jnk-cons/easy-rscp). Mo
 
 Du kannst die Bibliothek auf 2 verschiedene Arten verwenden, entweder du nutzt die vorgefertigten Services oder, wenn du mehr
 Funktionen brauchst, nutzt du die Lowlevel API.
+
+### installation
+
+```shell
+npm i easy-rscp
+```
 
 ### Service
 
