@@ -1,6 +1,6 @@
 {
   "name": "easy-rscp",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "e3dc rscp protocol implementation",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,9 +10,13 @@
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
     "int-test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine-integration.json"
   },
-  "keywords": [],
+  "keywords": ["e3dc","rscp","inverter","solar"],
   "author": "Jochen Zink",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jnk-cons/easy-rscp-js/issues"
+  },
+  "homepage": "https://github.com/jnk-cons/easy-rscp-js",
   "devDependencies": {
     "@types/jasmine": "^4.3.6",
     "@types/rijndael-js": "^1.0.1",
