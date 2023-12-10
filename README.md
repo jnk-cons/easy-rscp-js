@@ -36,7 +36,7 @@ const connectionData: E3dcConnectionData = {
     port : 5033,
     portalUser : 'user username for the e3dc portal',
     portalPassword : 'the corresponding password',
-    rscpPassword : 'Das RSCP Passwort, dass an der home power station konfigufiert ist'
+    rscpPassword : 'The RSCP password that is configured on the home power station'
 }
 
 const aesFactory = new RijndaelJsAESCipherFactory(connectionData.rscpPassword)
@@ -71,7 +71,7 @@ const connectionData: E3dcConnectionData = {
     port : 5033,
     portalUser : 'user username for the e3dc portal',
     portalPassword : 'the corresponding password',
-    rscpPassword : 'Das RSCP Passwort, dass an der home power station konfigufiert ist'
+    rscpPassword : 'The RSCP password that is configured on the home power station'
 }
 
 const aesFactory = new RijndaelJsAESCipherFactory(this.settings.rscpKey)
