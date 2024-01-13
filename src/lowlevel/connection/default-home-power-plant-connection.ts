@@ -61,12 +61,18 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
     disconnect(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             if (this.isConnected()) {
-                this.socket?.end(() => {
-                    this.socket?.destroy()
-                    this.socket = undefined
+                if (this.socket) {
+                    this.socket?.end(() => {
+                        this.socket?.destroy()
+                        this.socket = undefined
+                        this.resetQueue()
+                        resolve()
+                    })
+                }
+                else {
                     this.resetQueue()
                     resolve()
-                })
+                }
             }
             else {
                 this.resetQueue()
@@ -113,6 +119,7 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
     private onErrorReceivedFromSocket(error: any) {
         if (this.currentSender) {
             this.currentSender.reject(error)
+            this.currentSender = undefined
         }
         this.processQueue()
     }
