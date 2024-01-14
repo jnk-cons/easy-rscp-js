@@ -21,7 +21,6 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
     private aes: AESCipher
     private queue: FrameSender[] = []
     private currentSender: FrameSender | undefined
-
     constructor(
         private connectionData: E3dcConnectionData,
         private aesFactory: AesCipherFactory,
@@ -58,24 +57,31 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
         })
     }
 
-    disconnect(): Promise<void> {
+    disconnect(e: Error | undefined = undefined, force: boolean = false): Promise<void> {
         return new Promise<void>((resolve, reject) => {
+            const error = e ?? { name: 'DISCONNECT', message: 'Disconnect requested'}
             if (this.isConnected()) {
                 if (this.socket) {
+                    if (force) {
+                        this.socket?.destroy()
+                        this.socket = undefined
+                        this.resetQueue(error)
+                        resolve()
+                    }
                     this.socket?.end(() => {
                         this.socket?.destroy()
                         this.socket = undefined
-                        this.resetQueue()
+                        this.resetQueue(error)
                         resolve()
                     })
                 }
                 else {
-                    this.resetQueue()
+                    this.resetQueue(error)
                     resolve()
                 }
             }
             else {
-                this.resetQueue()
+                this.resetQueue(error)
                 resolve()
             }
         })
@@ -85,7 +91,8 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
         return this.socket != undefined;
     }
 
-    private resetQueue() {
+    private resetQueue(e: Error) {
+        this.queue.forEach(value => value.reject(e))
         this.queue = []
         this.currentSender = undefined
     }
@@ -93,6 +100,9 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
 
     private onDataReceivedFromSocket(data: Buffer) {
         if (this.currentSender) {
+            if (this.currentSender.timeoutId) {
+                clearTimeout(this.currentSender.timeoutId)
+            }
             const answerReceivedEvent = new RSCPAnswerReceivedEvent(
                 this.currentSender.requestFrame,
                 data.toString('hex')
@@ -118,6 +128,9 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
 
     private onErrorReceivedFromSocket(error: any) {
         if (this.currentSender) {
+            if (this.currentSender.timeoutId) {
+                clearTimeout(this.currentSender.timeoutId)
+            }
             this.currentSender.reject(error)
             this.currentSender = undefined
         }
@@ -127,7 +140,20 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
     private processQueue() {
         if (this.queue.length >= 1 && this.currentSender === undefined) {
             this.currentSender = this.queue.pop()
-            this.currentSender?.sendRequest()
+            if (this.currentSender) {
+                const timeout = this.connectionData.readTimeoutMillis ?? 10000
+                const timeoutId = setTimeout(() => {
+                    const error = {
+                        name: 'READ_TIMEOUT',
+                        message: 'No response from the home power station (' + this.connectionData.address + ':' + this.connectionData.port + ') within ' + timeout + 'ms received.'
+                    }
+                    this.currentSender?.reject(error)
+                    this.disconnect(error, true)
+                        .then()
+
+                }, timeout)
+                this.currentSender?.sendRequest(timeoutId)
+            }
         }
     }
 
@@ -157,6 +183,9 @@ export class DefaultHomePowerPlantConnection implements HomePowerPlantConnection
 }
 
 class FrameSender {
+
+    timeoutId: NodeJS.Timeout | undefined
+
     constructor(
         public requestFrame: Frame,
         public socket: Socket,
@@ -181,7 +210,8 @@ class FrameSender {
         return frameBuffer
     }
 
-    public sendRequest(): boolean  {
+    public sendRequest(timeoutId: NodeJS.Timeout): boolean  {
+        this.timeoutId = timeoutId
         const frameBuffer = this.encrypt()
         const result = this.socket.write(frameBuffer)
         const afterSendEvent = new RSCPAfterRequestSendEvent(

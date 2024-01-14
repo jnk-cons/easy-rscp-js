@@ -47,7 +47,7 @@ export class DefaultHomePowerPlantConnectionFactory implements HomePowerPlantCon
                             }
                         })
                         .catch(e => {
-                            connection.disconnect().then()
+                            connection.disconnect(e).then()
                             reject(e)
                         })
                 })

@@ -10,12 +10,23 @@ export class DefaultSocketFactory implements SocketFactory {
                 newSocket.removeListener('error', errorListener)
                 reject(e)
             }
+            const connectionTimout = connectionData.connectionTimeoutMillis ?? 5000
+            const timeoutId = setTimeout(() => {
+                newSocket.destroy({
+                    name: 'CONNECTION_TIMEOUT',
+                    message: 'Unable to establish an connection to '
+                        + connectionData.address + ':' + connectionData.port
+                        + ' within the configured timeout of '
+                        + connectionTimout + 'ms'
+                })
+            }, connectionTimout)
             newSocket.on('error', errorListener)
             newSocket.connect({
                 port: connectionData.port,
                 host: connectionData.address,
                 keepAlive: true
             }, () => {
+                clearTimeout(timeoutId)
                 newSocket.removeListener('error', errorListener)
                 resolve(newSocket)
             })
