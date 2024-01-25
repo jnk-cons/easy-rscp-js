@@ -12,8 +12,10 @@ This library is a port of [easy-rscp](https://github.com/jnk-cons/easy-rscp). Mo
 
 ## Getting started
 
-Du kannst die Bibliothek auf 2 verschiedene Arten verwenden, entweder du nutzt die vorgefertigten Services oder, wenn du mehr
-Funktionen brauchst, nutzt du die Lowlevel API.
+The library was developed from the kotlin library easy-rscp. The documentation of the kotlin library is very detailed and has been supplemented by the typescript information. You will definitely find what you are looking for there. [easy-rscp-docu](https://jnk-cons.github.io/easy-rscp/)
+
+You can use the library in 2 different ways, either you use the ready-made services or, if you need more
+functions, you can use the low-level API.
 
 ### installation
 
