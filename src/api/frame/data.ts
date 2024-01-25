@@ -4,6 +4,7 @@ import {DataParser} from './data-parser';
 import {DefaultDataParser} from '../../lowlevel/frame/default-data-parser';
 import {ResultCode} from '../service/model/result-code';
 import {Duration} from './duration';
+import {ErrorCode} from './ErrorCode';
 
 
 export class Data {
@@ -181,6 +182,14 @@ export class Data {
         return 0.0
     }
 
+    valueAsErrorCode() : number {
+        const code = this.valueAsInt()
+        if (Object.values(ErrorCode).includes(code)) {
+            return code
+        }
+        return ErrorCode.UNKNOWN
+    }
+
     private isByteType(): boolean {
         return this.type == DataType.UCHAR8 || this.type == DataType.CHAR8
     }
@@ -195,5 +204,9 @@ export class Data {
 
     private isLongType(): boolean {
         return this.isIntType() || this.type == DataType.INT64 || this.type == DataType.UINT64
+    }
+
+    isErrorResponse(): boolean {
+        return this.type == DataType.ERROR
     }
 }

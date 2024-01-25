@@ -6,6 +6,7 @@ import {DataType} from './DataType';
 import {buf as crc32} from 'crc-32'
 import {ResultCode} from '../service/model/result-code';
 import {Duration} from './duration';
+import {ErrorCode} from './ErrorCode';
 
 export class Frame {
     constructor(
@@ -134,6 +135,22 @@ export class Frame {
             return block.valueAsResultCode()
         }
         return ResultCode.UNKNOWN
+    }
+
+    isDataBlockInError(tag: string, ...containerPath: string[]): boolean {
+        const block = this.find(tag, this.data, ...containerPath)
+        if (block) {
+            return block.isErrorResponse()
+        }
+        return false
+    }
+
+    errorCodeByTag(tag: string, ...containerPath: string[]): ErrorCode {
+        const block = this.find(tag, this.data, ...containerPath)
+        if (block) {
+            return block.valueAsErrorCode()
+        }
+        return ErrorCode.UNKNOWN
     }
 
     isChecksumEnabled(): boolean {
