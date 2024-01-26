@@ -14,6 +14,7 @@ export { EMSSysSpecName } from './api/frame/EMSSysSpecName'
 export { Frame } from './api/frame/frame'
 export { FrameParser } from './api/frame/frame-parser'
 export { SysSpecData } from './api/frame/sys-spec-data'
+export { ErrorCode } from './api/frame/ErrorCode'
 
 export { BatTag } from './api/frame/tags/BatTag'
 export { DBTag } from './api/frame/tags/DBTag'
@@ -43,6 +44,7 @@ export { HistoryData } from './api/service/model/history-data'
 export { PowerState } from './api/service/model/power-state'
 export { ResultCode } from './api/service/model/result-code'
 export { SystemInfo, ProductionDate } from './api/service/model/system-info'
+
 
 export { DefaultHomePowerPlantConnection } from './lowlevel/connection/default-home-power-plant-connection'
 export { DefaultHomePowerPlantConnectionFactory } from './lowlevel/connection/default-home-power-plant-connection-factory'
@@ -86,6 +88,8 @@ export { SetPowerSettingsCreator } from './service/creator/set-power-settings-cr
 export { ReadDailySummaryCreator } from './service/creator/db/read-daily-summary-creator'
 export { ReadMonthlySummaryCreator } from './service/creator/db/read-monthly-summary-creator'
 export { ReadYearlySummaryCreator } from './service/creator/db/read-yearly-summary-creator'
+export { BatteryInfoRequestCreator } from './service/creator/battery-info-request-creator'
+export { DcbInfoRequestCreator } from './service/creator/dcb-info-request-creator'
 
 export { PrintRequestAndAnswerListener } from './service/listener/print-request-and-answer-listener'
 
@@ -93,3 +97,4 @@ export { DefaultChargingService } from './service/default-charging-service'
 export { DefaultDbSummaryService } from './service/default-db-summary-service'
 export { DefaultInfoService } from './service/default-info-service'
 export { DefaultLiveDataService } from './service/default-live-data-service'
+export { DefaultBatteryService } from './service/default-battery-service'
