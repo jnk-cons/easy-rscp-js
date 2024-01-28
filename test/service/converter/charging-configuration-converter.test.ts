@@ -1,12 +1,8 @@
-import {DataType} from '../../../src/api/frame/DataType';
-import {BatTag} from '../../../src/api/frame/tags/BatTag';
-import {DefaultDataParser} from '../../../src/lowlevel/frame/default-data-parser';
 import {EMSTag} from '../../../src/api/frame/tags/EMSTag';
 import {FrameBuilder} from '../../../src/lowlevel/frame/frame-builder';
 import {DataBuilder} from '../../../src/lowlevel/frame/data-builder';
 import {EMSSysSpecName} from '../../../src/api/frame/EMSSysSpecName';
 import {ChargingConfigurationConverter} from '../../../src/service/converter/charging-configuration-converter';
-import {StringFrameConverter} from '../../../src/service/converter/string-frame-converter';
 
 describe('charging configuration converter tests ', function() {
     it('test conversion', function () {

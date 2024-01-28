@@ -26,7 +26,6 @@ export interface DCBSpec {
 
 export interface BatteryStatus {
     index: number,
-    trainingModeActive: boolean,
     connected: boolean,
     working: boolean,
     inService: boolean,
@@ -34,6 +33,7 @@ export interface BatteryStatus {
     realRsoc: number,
     voltage: number,
     dcbStatus: DCBStatus[],
+    trainingMode: TrainingMode
 }
 
 export interface DCBStatus {
@@ -43,4 +43,11 @@ export interface DCBStatus {
     currentA: number
     currentAVG30s: number
     temperaturesCelsius: number[]
+}
+
+export enum TrainingMode {
+    NOT_IN_TRAINING = 0,
+    TRAINING_DISCHARGE = 1,
+    TRAINING_CHARGE = 2,
+    UNKNOWN = -99
 }
