@@ -1,7 +1,7 @@
 import {HomePowerPlantConnection} from '../api/connection/home-power-plant-connection';
 import {FrameCreator} from './creator/frame-creator';
 import {BatteryService} from '../api/service/battery-service';
-import {BatterySpec, BatteryStatus, DCBSpec, DCBStatus} from '../api/service/model/battery';
+import {BatterySpec, BatteryStatus, DCBSpec, DCBStatus, TrainingMode} from '../api/service/model/battery';
 import {BatteryInfoRequestCreator} from './creator/battery-info-request-creator';
 import {DCBIdent, DcbInfoRequestCreator} from './creator/dcb-info-request-creator';
 import {BatTag} from '../api/frame/tags/BatTag';
@@ -83,9 +83,20 @@ export class DefaultBatteryService implements BatteryService {
                             .map(value => value.valueAsNumber())
                     })
                 }
+                const trainingModeRAW = batInfoResponse.numberByTag(BatTag.TRAINING_MODE, BatTag.DATA)
+                let trainingMode: TrainingMode = TrainingMode.UNKNOWN
+                if (trainingModeRAW == 0) {
+                    trainingMode = TrainingMode.NOT_IN_TRAINING
+                }
+                else if (trainingModeRAW == 1) {
+                    trainingMode = TrainingMode.TRAINING_DISCHARGE
+                }
+                else if (trainingModeRAW == 1) {
+                    trainingMode = TrainingMode.TRAINING_CHARGE
+                }
                 result.push({
                     index: batIndex,
-                    trainingModeActive: batInfoResponse.numberByTag(BatTag.TRAINING_MODE, BatTag.DATA) != 0,
+                    trainingMode: trainingMode,
                     connected: batInfoResponse.booleanByTag(BatTag.DEVICE_CONNECTED, BatTag.DATA, BatTag.DEVICE_STATE),
                     working: batInfoResponse.booleanByTag(BatTag.DEVICE_WORKING, BatTag.DATA, BatTag.DEVICE_STATE),
                     inService: batInfoResponse.booleanByTag(BatTag.DEVICE_IN_SERVICE, BatTag.DATA, BatTag.DEVICE_STATE),
