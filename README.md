@@ -1,6 +1,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Static Badge](https://img.shields.io/badge/Lang-TypeScript-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Static Badge](https://img.shields.io/badge/npm-CD3738?logo=npm&logoColor=white)](https://www.npmjs.com/package/easy-rscp)
+[![GitHub release](https://img.shields.io/github/release/jnk-cons/easy-rscp-js.svg)](https://github.com/jnk-cons/easy-rscp-js/releases)
+[![GitHub latest commit](https://badgen.net/github/last-commit/jnk-cons/easy-rscp-js)](https://GitHub.com/jnk-cons/easy-rscp-js/commit/)
 
 # easy-rscp-js
 
