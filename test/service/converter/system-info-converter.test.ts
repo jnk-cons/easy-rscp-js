@@ -1,13 +1,5 @@
-import {DataType} from '../../../src/api/frame/DataType';
-import {BatTag} from '../../../src/api/frame/tags/BatTag';
-import {DefaultDataParser} from '../../../src/lowlevel/frame/default-data-parser';
-import {EMSTag} from '../../../src/api/frame/tags/EMSTag';
 import {FrameBuilder} from '../../../src/lowlevel/frame/frame-builder';
 import {DataBuilder} from '../../../src/lowlevel/frame/data-builder';
-import {EMSSysSpecName} from '../../../src/api/frame/EMSSysSpecName';
-import {ChargingConfigurationConverter} from '../../../src/service/converter/charging-configuration-converter';
-import {StringFrameConverter} from '../../../src/service/converter/string-frame-converter';
-import {PowerStateConverter} from '../../../src/service/converter/power-state-converter';
 import {InfoTag} from '../../../src/api/frame/tags/InfoTag';
 import {SystemInfoConverter} from '../../../src/service/converter/system-info-converter';
 
