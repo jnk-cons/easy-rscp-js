@@ -44,7 +44,7 @@ export { HistoryData } from './api/service/model/history-data'
 export { PowerState } from './api/service/model/power-state'
 export { ResultCode } from './api/service/model/result-code'
 export { SystemInfo, ProductionDate } from './api/service/model/system-info'
-
+export { ManualChargeState } from './api/service/model/manual-charge'
 
 export { DefaultHomePowerPlantConnection } from './lowlevel/connection/default-home-power-plant-connection'
 export { DefaultHomePowerPlantConnectionFactory } from './lowlevel/connection/default-home-power-plant-connection-factory'
@@ -79,6 +79,8 @@ export { WriteChargingLimitsResultConverter } from './service/converter/write-ch
 export { DailySummaryConverter } from './service/converter/db/daily-summary-converter'
 export { MonthlySummaryConverter } from './service/converter/db/monthly-summary-converter'
 export { YearlySummaryConverter } from './service/converter/db/yearly-summary-converter'
+export { ManualChargeStateConverter } from './service/converter/manual-charge-state-converter'
+export { StartManualChargeResponseConverter } from './service/converter/start-manual-charge-response-converter'
 
 export { FrameCreator } from './service/creator/frame-creator'
 export { RequestChargingConfigurationCreator } from './service/creator/request-charging-configuration-creator'
@@ -90,6 +92,8 @@ export { ReadMonthlySummaryCreator } from './service/creator/db/read-monthly-sum
 export { ReadYearlySummaryCreator } from './service/creator/db/read-yearly-summary-creator'
 export { BatteryInfoRequestCreator } from './service/creator/battery-info-request-creator'
 export { DcbInfoRequestCreator } from './service/creator/dcb-info-request-creator'
+export { RequestManualChargeStateCreator } from './service/creator/request-manual-charge-state-creator'
+export { RequestStartManualChargeCreator } from './service/creator/request-start-manual-charge-creator'
 
 export { PrintRequestAndAnswerListener } from './service/listener/print-request-and-answer-listener'
 

@@ -1,5 +1,5 @@
 import {
-    DataBuilder,
+    DataBuilder, DefaultChargingService,
     DefaultFrameParser,
     DefaultHomePowerPlantConnectionFactory, DefaultInfoService,
     DefaultSocketFactory,
@@ -25,12 +25,11 @@ describe('request tester', function() {
 
     it('execute test', async function() {
         const connection = await factory.openConnection()
+        const service = new DefaultChargingService(connection)
 
-        const response = await connection.send(
-           new RequestChargingConfigurationCreator().create(undefined)
-        )
+        const result = await service.readManualChargeState()
+        console.log(result)
 
-        console.log(new StringFrameConverter().convert(response))
         await connection.disconnect()
     });
 });
