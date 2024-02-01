@@ -20,7 +20,7 @@ describe('manual charge state converter tests ', function() {
         const result = toTest.convert(frame)
 
         expect(result.active).toBe(true)
-        expect(result.lastRun).toBe(timestamp)
+        expect(result.lastRun).toEqual(timestamp)
         expect(result.chargedEnergyWh).toBe(3000.0)
     })
 
