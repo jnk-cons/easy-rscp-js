@@ -19,8 +19,12 @@ export class DefaultLiveDataService implements LiveDataService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.responseConverter.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.responseConverter.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
 

@@ -33,9 +33,6 @@ describe('info service integration tests', function() {
         const result = await service.readSpecification()
         result.forEach(battery => {
             console.log(battery)
-            battery.dcbSpecs.forEach(dcb => {
-                console.log(dcb)
-            })
         })
 
         await connection.disconnect()
@@ -47,9 +44,6 @@ describe('info service integration tests', function() {
         const result = await service.readMonitoringData()
         result.forEach(battery => {
             console.log(battery)
-            battery.dcbStatus.forEach(dcb => {
-                console.log(dcb)
-            })
         })
 
         await connection.disconnect()

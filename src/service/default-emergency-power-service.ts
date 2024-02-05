@@ -24,8 +24,12 @@ export class DefaultEmergencyPowerService implements EmergencyPowerService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.convertFrameToEmergencyPowerState.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.convertFrameToEmergencyPowerState.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         })

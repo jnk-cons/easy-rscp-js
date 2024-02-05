@@ -37,8 +37,12 @@ export class DefaultChargingService implements ChargingService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.readChargingConfigurationConverter.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.readChargingConfigurationConverter.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
@@ -50,8 +54,12 @@ export class DefaultChargingService implements ChargingService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.writeChargingLimitsConverter.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.writeChargingLimitsConverter.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
@@ -63,8 +71,12 @@ export class DefaultChargingService implements ChargingService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.manualChargeStateConverter.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.manualChargeStateConverter.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
@@ -76,8 +88,12 @@ export class DefaultChargingService implements ChargingService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.requestStartManualChargeResponseConverter.convert(response)
-                    resolve(result)
+                    try {
+                        const result = this.requestStartManualChargeResponseConverter.convert(response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });

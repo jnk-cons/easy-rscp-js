@@ -33,8 +33,12 @@ export class DefaultDbSummaryService implements DBSummaryService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.dailyResponseConverter.convert(request, response)
-                    resolve(result)
+                    try {
+                        const result = this.dailyResponseConverter.convert(request, response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
@@ -48,8 +52,12 @@ export class DefaultDbSummaryService implements DBSummaryService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.monthlyResponseConverter.convert(request, response)
-                    resolve(result)
+                    try {
+                        const result = this.monthlyResponseConverter.convert(request, response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
@@ -63,8 +71,12 @@ export class DefaultDbSummaryService implements DBSummaryService {
             this.connection
                 .send(request)
                 .then(response => {
-                    const result = this.yearlyResponseConverter.convert(request, response)
-                    resolve(result)
+                    try {
+                        const result = this.yearlyResponseConverter.convert(request, response)
+                        resolve(result)
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
                 .catch(e => reject(e))
         });
