@@ -12,8 +12,8 @@ export class DcbInfoRequestCreator implements FrameCreator<DCBIdent> {
                 new DataBuilder().tag(BatTag.REQ_DATA).container(
                     new DataBuilder().tag(BatTag.INDEX).uint16(ident.batIndex).build(),
                     new DataBuilder().tag(BatTag.REQ_DCB_INFO).uint16(ident.dcbIndex).build(),
-                    new DataBuilder().tag(BatTag.REQ_DCB_ALL_CELL_TEMPERATURES).build(),
-                    new DataBuilder().tag(BatTag.REQ_DCB_ALL_CELL_VOLTAGES).build(),
+                    new DataBuilder().tag(BatTag.REQ_DCB_ALL_CELL_TEMPERATURES).uint16(ident.dcbIndex).build(),
+                    new DataBuilder().tag(BatTag.REQ_DCB_ALL_CELL_VOLTAGES).uint16(ident.dcbIndex).build(),
                 ).build(),
             )
             .build();
