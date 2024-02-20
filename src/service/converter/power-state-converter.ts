@@ -15,6 +15,8 @@ export class PowerStateConverter implements FrameConverter<PowerState> {
             batteryDelivery: frame.numberByTag(EMSTag.POWER_BAT) * -1,
             houseConsumption: frame.numberByTag(EMSTag.POWER_HOME),
             batteryChargingLevel: frame.numberByTag(EMSTag.BAT_SOC) / 100.0,
+            wallboxConsumption: frame.numberByTag(EMSTag.POWER_WB_ALL),
+            wallboxProportionateSolarShare: frame.numberByTag(EMSTag.POWER_WB_SOLAR),
         }
     }
 

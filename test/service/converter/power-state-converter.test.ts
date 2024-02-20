@@ -1,12 +1,6 @@
-import {DataType} from '../../../src/api/frame/DataType';
-import {BatTag} from '../../../src/api/frame/tags/BatTag';
-import {DefaultDataParser} from '../../../src/lowlevel/frame/default-data-parser';
 import {EMSTag} from '../../../src/api/frame/tags/EMSTag';
 import {FrameBuilder} from '../../../src/lowlevel/frame/frame-builder';
 import {DataBuilder} from '../../../src/lowlevel/frame/data-builder';
-import {EMSSysSpecName} from '../../../src/api/frame/EMSSysSpecName';
-import {ChargingConfigurationConverter} from '../../../src/service/converter/charging-configuration-converter';
-import {StringFrameConverter} from '../../../src/service/converter/string-frame-converter';
 import {PowerStateConverter} from '../../../src/service/converter/power-state-converter';
 
 describe('power state converter tests ', function() {
@@ -18,6 +12,8 @@ describe('power state converter tests ', function() {
                 new DataBuilder().tag(EMSTag.POWER_BAT).int32(450).build(),
                 new DataBuilder().tag(EMSTag.POWER_HOME).int32(370).build(),
                 new DataBuilder().tag(EMSTag.BAT_SOC).uchar8(82).build(),
+                new DataBuilder().tag(EMSTag.POWER_WB_ALL).int32(1370).build(),
+                new DataBuilder().tag(EMSTag.POWER_WB_SOLAR).int32(531).build(),
             ).build()
 
         const toTest = new PowerStateConverter()
@@ -28,6 +24,8 @@ describe('power state converter tests ', function() {
         expect(result.batteryDelivery).toBe(-450)
         expect(result.houseConsumption).toBe(370)
         expect(result.batteryChargingLevel).toBe(0.82)
+        expect(result.wallboxConsumption).toBe(1370)
+        expect(result.wallboxProportionateSolarShare).toBe(531)
     })
 
 })

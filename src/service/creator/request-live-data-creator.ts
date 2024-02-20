@@ -13,6 +13,8 @@ export class RequestLiveDataCreator implements FrameCreator<undefined> {
                 new DataBuilder().tag(EMSTag.REQ_POWER_GRID).build(),
                 new DataBuilder().tag(EMSTag.REQ_POWER_HOME).build(),
                 new DataBuilder().tag(EMSTag.REQ_BAT_SOC).build(),
+                new DataBuilder().tag(EMSTag.REQ_POWER_WB_ALL).build(),
+                new DataBuilder().tag(EMSTag.REQ_POWER_WB_SOLAR).build(),
             )
             .build();
     }

@@ -5,4 +5,6 @@ export interface PowerState {
     batteryDelivery: number
     houseConsumption: number
     batteryChargingLevel: number
+    wallboxConsumption: number
+    wallboxProportionateSolarShare: number
 }

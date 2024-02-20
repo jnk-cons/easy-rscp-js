@@ -65,3 +65,7 @@ export function determineTagName(tagAsHex: string): string {
     }
     return 'UNKNOWN'
 }
+
+export function tag2ReadableString(tagAsHex: string): string {
+    return determineTagName(tagAsHex) + ' (' + tagAsHex + ')'
+}
