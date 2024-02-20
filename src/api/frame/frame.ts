@@ -64,6 +64,14 @@ export class Frame {
         return this.find(tag, this.data, ...containerPath)
     }
 
+    bytesByTag(tag: string, ...containerPath: string[]): string | undefined {
+        const block = this.find(tag, this.data, ...containerPath)
+        if (block) {
+            return block.valueAsHex
+        }
+        return undefined
+    }
+
     numberByTag(tag: string, ...containerPath: string[]): number {
         const block = this.find(tag, this.data, ...containerPath)
         if (block) {
