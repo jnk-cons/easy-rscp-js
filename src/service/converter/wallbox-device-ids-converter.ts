@@ -6,6 +6,7 @@ export class WallboxDeviceIdsConverter implements FrameConverter<number[]> {
     convert(frame: Frame): number[] {
         return frame
             .containerByTag(WBTag.CONNECTED_DEVICES)
-            .map(value => value.valueAsNumber())
+            .filter(value => !value.isErrorResponse())
+            .map(value => value.valueAsNumber() )
     }
 }
