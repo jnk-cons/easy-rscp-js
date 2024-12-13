@@ -8,11 +8,25 @@ import {
 } from '../../src';
 
 describe('request tester', function() {
+
+    const ipAddress = ''
+    const e3dcPortalUser = ''
+    const e3dcPortalPassword = ''
+    const rscpPassword = ''
+
+    // const connectionData: E3dcConnectionData = {
+    //     address: process.env['RSCP_IP']!!,
+    //     portalUser: process.env['PORTAL_USER']!!,
+    //     portalPassword: process.env['PORTAL_PASSWORD']!!,
+    //     rscpPassword: process.env['RSCP_PASSWORD']!!,
+    //     port: 5033
+    // }
+
     const connectionData: E3dcConnectionData = {
-        address: process.env['RSCP_IP']!!,
-        portalUser: process.env['PORTAL_USER']!!,
-        portalPassword: process.env['PORTAL_PASSWORD']!!,
-        rscpPassword: process.env['RSCP_PASSWORD']!!,
+        address: ipAddress,
+        portalUser: e3dcPortalUser,
+        portalPassword: e3dcPortalPassword,
+        rscpPassword: rscpPassword,
         port: 5033
     }
 
